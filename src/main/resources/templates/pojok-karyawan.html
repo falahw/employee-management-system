@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">>
+<head>
+<meta charset="UTF-8">
+<title>SBTLEmpManSys - Pojok Karyawan</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle Navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">Modul Registrasi dan Login</a>
+			</div>
+			
+			<!-- LOGOUT -->
+			<div class="collapse navbar-collapse" id="navbar">
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<br><br><br>
+	<div class="container my-2">
+		<p>Welcome <span sec:authentication="principal.username">User</span></p>
+		<h1>Daftar Karyawan</h1>
+		<table border="1" class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th><a th:href="@{'/page/' + ${currentPage} + '?colToBeSorted=empId&sortAscOrDesc=' + ${reverseSortDir}}">Employee ID</a></th>
+					<th><a th:href="@{'/page/' + ${currentPage} + '?colToBeSorted=fullName&sortAscOrDesc=' + ${reverseSortDir}}">Full Name</a></th>
+					<th><a th:href="@{'/page/' + ${currentPage} + '?colToBeSorted=email&sortAscOrDesc=' + ${reverseSortDir}}">Email</a></th>
+					<!-- <th><a>Password</a></th> -->
+					<th>Tindakan</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="pekerja : ${daftarKaryawan}">
+					<td th:text="${pekerja.empId}"></td>
+					<td th:text="${pekerja.fullName}"></td>
+					<td th:text="${pekerja.email}"></td>
+					<!-- <td th:text="${pekerja.password}"></td> -->
+					<td>
+						<a class="btn btn-primary" th:href="@{/pembaruanDataKaryawan/{unik} (unik = ${pekerja.empId})}">Update</a>
+						<a class="btn btn-danger" th:href="@{/hapusKaryawan/{unik} (unik = ${pekerja.empId})}" >Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<!-- PAGINATION -->
+		<div th:if="${totalPages > 1}">
+			<div class="row col-sm-10">
+				<!-- TAMPIL TOTAL ELEMEN pada DAFTAR KARYAWAN -->
+				<div class="col-sm-2">
+					Total Rows: [[${totalItems}]]
+				</div>
+				<!-- TAMPIL NOMOR HALAMAN WEB -->
+				<div class="col-sm-1">
+					<span th:each="pageIdx: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != pageIdx}" th:href="@{'/page/' + ${pageIdx} + '?colToBeSorted=' + ${sortCol} + '&sortAscOrDesc=' + ${sortDir}}">[[${pageIdx}]]</a>
+						<span th:unless="${currentPage != pageIdx}">[[${pageIdx}]]</span>
+					</span>
+				</div>
+				<!-- TAMPIL TOMBOL 'Berikut' -->
+				<div class="col-sm-1">
+					<a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1} + '?colToBeSorted=' + ${sortCol} + '&sortAscOrDesc=' + ${sortDir}}">Next</a>
+					<span th:unless="${currentPage < totalPages}">Next</span>
+				</div>
+				<!-- TAMPIL TOMBOL 'Sebelum' -->
+				<div class="col-sm-1">
+					<a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages} + '?colToBeSorted=' + ${sortCol} + '&sortAscOrDesc=' + ${sortDir}}">Last</a>
+					<span th:unless="${currentPage < totalPages}">Last</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

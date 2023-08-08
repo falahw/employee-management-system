@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>SBTLEmpManSys - Pembaruan Data Karyawan</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h1>Pojok Karyawan</h1>
+		<h2>Pembaruan Data Karyawan</h2>
+		<form action="#" method="POST" th:action="@{/simpanDataKaryawan}" th:object="${pekerja}">
+			<input type="hidden" th:field="*{empId}"/>
+			
+			<input class="form-control mb-4 col-4" type="text" th:field="*{fullName}"/>
+			<input class="form-control mb-4 col-4" type="text" th:field="*{email}"/>
+			<input class="form-control mb-4 col-4" type="password" th:field="*{password}">
+			<button class="btn btn-info col-2" type="submit">Perbarui Data Karyawan</button>
+		</form>
+		<hr>
+		<a th:href="@{/}">Kembali Halaman Utama</a>
+	</div>
+</body>
+</html>
