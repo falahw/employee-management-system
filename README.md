@@ -39,3 +39,6 @@ PostgreSQL dipilih semata-mata karena kandidat sudah terbiasa dengan teknologi d
 - buka direktori 'employee-management-system' melalui aplikasi Spring Tool Suite
 - pastikan setting database pada file 'application.properties' sudah sesuai dengan sistem database di komputer anda
 - run aplikasi
+
+# Akses
+Untuk akses pertama anda bisa menggunakan username 'admin@administrator.com' & password 'passadmin'. Setelahnyaanda dapat mencoba user lain dengan login menggunakan username [nama depan]@email.com & password pass[nama depan]
