@@ -34,11 +34,11 @@ Spring Security digunakan untuk memastikan keamanan otentifikasi pengguna.
 PostgreSQL dipilih semata-mata karena kandidat sudah terbiasa dengan teknologi database jenis ini.
 
 # How-to-Use (Cara Penggunaan)
-- copy seluruh file yang ada dalam repository ini dengan menggunakan 'git clone' (jika anda tidak mempunyai git di komputer anda, install terlebih dahulu)
+- pull atau download file 'SBTLEmpManSys-0.0.1-SNAPSHOT.jar'  dengan menggunakan 'git clone' (jika anda tidak mempunyai git di komputer anda, install terlebih dahulu)
 - impor file database 'karyawan_ems.csv' ke sistem database di komputer anda terlebih dahulu (file database 'karyawan_ems.csv' dibuat dengan menggunakan PostgreSQL)
-- buka direktori 'employee-management-system' melalui aplikasi Spring Tool Suite
-- pastikan setting database pada file 'application.properties' sudah sesuai dengan sistem database di komputer anda
-- run aplikasi
+- gunakan postgresql pada terminal/konsol komputer anda atau gunakan aplikasi pgAdmin untuk melakukan impor database pada step di atas
+- jalankan file 'SBTLEmpManSys.jar' dengan menggunakan command 'java -jar SBTLEmpManSys.jar' melalui terminal/konsol, ketika mengetik command tersebut pastikan ada berada di direktori 'employee-management-system'
+- anda akan melihat tampilan website Employee Management System sederhana pada localhost anda dan juga form login
 
 # Akses
-Untuk akses pertama anda bisa menggunakan username 'admin@administrator.com' & password 'passadmin'. Setelahnyaanda dapat mencoba user lain dengan login menggunakan username [nama depan]@email.com & password pass[nama depan]
+Untuk akses pertama anda bisa menggunakan username 'admin@administrator.com' & password 'passadmin'. Setelahnyaanda dapat mencoba user lain dengan login menggunakan username '[nama depan]@email.com' & password 'pass[nama depan]'

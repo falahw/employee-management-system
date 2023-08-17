@@ -59,6 +59,14 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- ENABLE SPRING SECURITY WebSecurityConfigurerAdapter->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>4.1.3.RELEASE</version>
+		</dependency -->
+		
 	</dependencies>
 
 	<build>

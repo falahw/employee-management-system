@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -32,11 +33,20 @@ public class EmpServiceImpl implements EmpService {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
+	//@Autowired //THIS is ADDITION to AVOID CIRCULAR REFERENCE --> ANNOTATION NOT WORKING
+	//public EmpServiceImpl(@Lazy EmployeeRepository empRepDAO) { //ANNOTATION '@Lazy' is ADDITION to AVOID CIRCULAR REFERENCE --> ANNOTATION NOT WORKING
 	public EmpServiceImpl(EmployeeRepository empRepDAO) {
 		super();
 		this.empRepDAO = empRepDAO;
 	}
-
+	/*
+	@Autowired
+	public EmpServiceImpl(EmployeeRepository empRepDAO, BCryptPasswordEncoder passwordEncoder) {
+		super();
+		this.empRepDAO = empRepDAO;
+		this.passwordEncoder = passwordEncoder;
+	}	
+	*/
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
